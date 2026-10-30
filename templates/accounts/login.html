@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Giriş Yap — Kararsızım{% endblock %}
+
+{% block content %}
+<section class="form-page container">
+    <div class="form-card">
+        <h1>Tekrar hoş geldin 👋</h1>
+        <p>Anketlere katılmak ve kendi anketini oluşturmak için giriş yap.</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            {% if form.non_field_errors %}<div class="form-error">{{ form.non_field_errors }}</div>{% endif %}
+            {% for field in form %}
+            <div class="form-field">
+                {{ field.label_tag }}
+                {{ field }}
+                {% for error in field.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+            </div>
+            {% endfor %}
+            <button class="button" type="submit">Giriş Yap</button>
+        </form>
+        <p>Hesabın yok mu? <a class="form-link" href="{% url 'signup' %}">Üye ol</a></p>
+    </div>
+</section>
+{% endblock %}

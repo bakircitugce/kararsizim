@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Üye Ol — Kararsızım{% endblock %}
+
+{% block content %}
+<section class="form-page container">
+    <div class="form-card">
+        <h1>Aramıza katıl 👋</h1>
+        <p>Kararsız kaldığında fikrini sor, birlikte karar verelim.</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            {% if form.non_field_errors %}<div class="form-error">{{ form.non_field_errors }}</div>{% endif %}
+            {% for field in form %}
+            <div class="form-field">
+                {{ field.label_tag }}
+                {{ field }}
+                {% for error in field.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+            </div>
+            {% endfor %}
+            <button class="button" type="submit">Üye Ol</button>
+        </form>
+        <p class="form-note">E-postan kimseyle paylaşılmaz, anketlerde sadece kullanıcı adın görünür.</p>
+        <p>Hesabın var mı? <a class="form-link" href="{% url 'login' %}">Giriş yap</a></p>
+    </div>
+</section>
+{% endblock %}

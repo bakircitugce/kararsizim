@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Kararsızım — Sor, gitsin!{% endblock %}
+
+{% block content %}
+<section class="hero container">
+    <div class="hero-badge">Karar vermek hiç bu kadar kolay olmamıştı ✨</div>
+    <h1>Kararsız mı kaldın?<br><span>Sor, gitsin!</span></h1>
+    <p>Seçeneklerini yaz, herkes oy versin, kararını ver.</p>
+    <a class="button" href="{% url 'signup' %}">Anket Oluştur <span aria-hidden="true">→</span></a>
+</section>
+{% endblock %}
